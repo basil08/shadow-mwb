@@ -3,15 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shadow Robotics</title>
+    <meta name="description" content="We build robots for military and industrial applications.">
+    <meta name="keywords" content="robotics, military, industrial, automation">
+    <meta name="author" content="Shadow Robotics">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="google" content="notranslate">
+    
+    <!-- add favicon -->
+    <link rel="icon" type="image/x-icon" href="public/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="public/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="public/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="public/android-chrome-512x512.png">
+    <link rel="manifest" href="public/site.webmanifest">
+    
     <!-- add link to lightweight css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css" id="theme-light">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css" id="theme-dark" disabled>
+    
+    <!-- Custom styles for pure black dark mode -->
+    <style>
+        body.dark-mode {
+            background-color: #000000 !important;
+        }
+        
+        body.dark-mode section {
+            background-color: transparent !important;
+        }
+    </style>
 </head>
 <body>
     <button id="theme-toggle" style="position: fixed; top: 20px; right: 20px; padding: 8px 12px; border: none; border-radius: 4px; background: var(--background-alt, #f1f3f4); color: var(--text-main, #202124); cursor: pointer; font-size: 14px; z-index: 1000;">🌙</button>
     
     <section >
+        <img src="assets/ShadowLogo.png" alt="Shadow Robotics Logo" style="display: block; margin: 0 auto 20px; max-width: 200px; height: auto;">
         <h1>Shadow Robotics</h1>
         <p>We build robots for military and industrial applications.</p>
         <p>For queries, please contact us at: gs454236 AT gmail DOT com</p>
@@ -32,10 +60,12 @@
             lightTheme.disabled = true;
             darkTheme.disabled = false;
             themeToggle.textContent = '☀️';
+            document.body.classList.add('dark-mode');
         } else {
             lightTheme.disabled = false;
             darkTheme.disabled = true;
             themeToggle.textContent = '🌙';
+            document.body.classList.remove('dark-mode');
         }
         
         // Toggle theme when button is clicked
@@ -45,12 +75,14 @@
                 lightTheme.disabled = false;
                 darkTheme.disabled = true;
                 themeToggle.textContent = '🌙';
+                document.body.classList.remove('dark-mode');
                 localStorage.setItem('theme', 'light');
             } else {
                 // Switch to dark theme
                 lightTheme.disabled = true;
                 darkTheme.disabled = false;
                 themeToggle.textContent = '☀️';
+                document.body.classList.add('dark-mode');
                 localStorage.setItem('theme', 'dark');
             }
         });
