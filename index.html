@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- add link to lightweight css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css" id="theme-light">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css" id="theme-dark" disabled>
+</head>
+<body>
+    <button id="theme-toggle" style="position: fixed; top: 20px; right: 20px; padding: 8px 12px; border: none; border-radius: 4px; background: var(--background-alt, #f1f3f4); color: var(--text-main, #202124); cursor: pointer; font-size: 14px; z-index: 1000;">🌙</button>
+    
+    <section >
+        <h1>Shadow Robotics</h1>
+        <p>We build robots for military and industrial applications.</p>
+        <p>For queries, please contact us at: gs454236 AT gmail DOT com</p>
+
+        <p>&copy; 2025 Shadow Robotics</p>
+    </section>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const lightTheme = document.getElementById('theme-light');
+        const darkTheme = document.getElementById('theme-dark');
+        
+        // Check for saved theme preference or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        // Apply the saved theme on page load
+        if (currentTheme === 'dark') {
+            lightTheme.disabled = true;
+            darkTheme.disabled = false;
+            themeToggle.textContent = '☀️';
+        } else {
+            lightTheme.disabled = false;
+            darkTheme.disabled = true;
+            themeToggle.textContent = '🌙';
+        }
+        
+        // Toggle theme when button is clicked
+        themeToggle.addEventListener('click', () => {
+            if (lightTheme.disabled) {
+                // Switch to light theme
+                lightTheme.disabled = false;
+                darkTheme.disabled = true;
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                // Switch to dark theme
+                lightTheme.disabled = true;
+                darkTheme.disabled = false;
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
