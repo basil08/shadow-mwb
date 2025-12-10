@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadow Robotics</title>
+    <title>BluSigma Robotics</title>
     <meta name="description" content="We build robots for military and industrial applications.">
     <meta name="keywords" content="robotics, military, industrial, automation">
-    <meta name="author" content="Shadow Robotics">
+    <meta name="author" content="BluSigma Robotics">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
     <meta name="google" content="notranslate">
@@ -21,71 +21,36 @@
     <link rel="manifest" href="site.webmanifest">
     
     <!-- add link to lightweight css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css" id="theme-light">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css" id="theme-dark" disabled>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+
+    <!-- Anton SC font from Google Fonts for heading -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&display=swap" rel="stylesheet">
+    <style>
+        h1 {
+            font-family: 'Anton SC', Arial, Helvetica, sans-serif;
+        }
+    </style>
     
     <!-- Custom styles for pure black dark mode -->
     <style>
-        body.dark-mode {
+        body {
             background-color: #000000 !important;
         }
         
-        body.dark-mode section {
+        body section {
             background-color: transparent !important;
         }
     </style>
 </head>
 <body>
-    <button id="theme-toggle" style="position: fixed; top: 20px; right: 20px; padding: 8px 12px; border: none; border-radius: 4px; background: var(--background-alt, #f1f3f4); color: var(--text-main, #202124); cursor: pointer; font-size: 14px; z-index: 1000;">🌙</button>
-    
     <section >
-        <img src="ShadowLogo.png" alt="Shadow Robotics Logo" style="display: block; margin: 0 auto 20px; max-width: 200px; height: auto;">
-        <h1>Shadow Robotics</h1>
+        <img src="BlusigmaLogo_Image.png" alt="Shadow Robotics Logo" style="display: block; margin: 0 auto 20px; max-width: 200px; height: auto;">
+        <h1 style="font-size: 3.5rem">BluSigma Robotics</h1>
         <p>We build robots for defense and industrial applications.</p>
-        <p>For queries, please contact us at: admin AT shadowrobotics DOT tech</p>
+        <p>For queries, please contact us at: admin AT blusigma DOT in</p>
 
-        <p>&copy; 2025 Shadow Robotics</p>
+        <p>&copy; 2025 BluSigma Robotics. All Rights Reserved.</p>
     </section>
 
-    <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const lightTheme = document.getElementById('theme-light');
-        const darkTheme = document.getElementById('theme-dark');
-        
-        // Check for saved theme preference or default to light
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        
-        // Apply the saved theme on page load
-        if (currentTheme === 'dark') {
-            lightTheme.disabled = true;
-            darkTheme.disabled = false;
-            themeToggle.textContent = '☀️';
-            document.body.classList.add('dark-mode');
-        } else {
-            lightTheme.disabled = false;
-            darkTheme.disabled = true;
-            themeToggle.textContent = '🌙';
-            document.body.classList.remove('dark-mode');
-        }
-        
-        // Toggle theme when button is clicked
-        themeToggle.addEventListener('click', () => {
-            if (lightTheme.disabled) {
-                // Switch to light theme
-                lightTheme.disabled = false;
-                darkTheme.disabled = true;
-                themeToggle.textContent = '🌙';
-                document.body.classList.remove('dark-mode');
-                localStorage.setItem('theme', 'light');
-            } else {
-                // Switch to dark theme
-                lightTheme.disabled = true;
-                darkTheme.disabled = false;
-                themeToggle.textContent = '☀️';
-                document.body.classList.add('dark-mode');
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-    </script>
 </body>
 </html>
