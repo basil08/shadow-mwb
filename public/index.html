@@ -26,20 +26,489 @@
 
     <!-- Anton SC font from Google Fonts for heading -->
     <link href="https://fonts.googleapis.com/css2?family=Anton+SC&display=swap" rel="stylesheet">
+    
+    <!-- Custom styles for SPA -->
     <style>
-        h1 {
-            font-family: 'Anton SC', Arial, Helvetica, sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    </style>
 
-    <!-- Custom styles for pure black dark mode -->
-    <style>
         body {
             background-color: #000000 !important;
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        body section {
-            background-color: transparent !important;
+        h1, h2 {
+            font-family: 'Anton SC', Arial, Helvetica, sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            background: rgba(40, 40, 40, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Anton SC', Arial, Helvetica, sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section:first-of-type {
+            padding-top: 0;
+        }
+
+        /* Banner Section */
+        #banner {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            max-width: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+        }
+
+        /* Animated background placeholder - Replace with actual GIF by adding: 
+           <img src="your-banner.gif" class="banner-gif" alt="Banner"> inside #banner */
+        #banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+            background-size: 200% 200%;
+            animation: gradientMove 20s ease infinite;
+            z-index: -1;
+        }
+
+        .banner-gif {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100%;
+            min-width: 100vw;
+            object-fit: cover;
+            z-index: -1;
+            filter: blur(2px);
+        }
+
+        .banner-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 3rem 4rem;
+            margin: 2rem;
+            z-index: 1;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .banner-callout {
+            font-family: 'Anton SC', Arial, Helvetica, sans-serif;
+            font-size: 3.5rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .banner-callout.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .banner-paragraph {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
+        }
+
+        .banner-paragraph.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .banner-content img {
+            max-width: 250px;
+            height: auto;
+            margin-bottom: 2rem;
+        }
+
+        .banner-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .banner-content p {
+            font-size: 1.25rem;
+            color: #fff;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Products Section */
+        #products {
+            background-color: #0a0a0a;
+        }
+
+        #products h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+
+        .tabs-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-button {
+            background: transparent;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-family: 'Anton SC', Arial, Helvetica, sans-serif;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab-button:hover {
+            color: #fff;
+        }
+
+        .tab-button.active {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .product-card {
+            background-color: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 3rem;
+            width: 100%;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .product-specs {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .product-specs th,
+        .product-specs td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .product-specs th {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-weight: 600;
+            width: 40%;
+        }
+
+        .product-specs td {
+            color: #b0b0b0;
+        }
+
+        .product-specs tr:last-child th,
+        .product-specs tr:last-child td {
+            border-bottom: none;
+        }
+
+        .product-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: #fff;
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        .product-button:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+        }
+
+        /* About Us Section */
+        #about {
+            background-color: #000000;
+        }
+
+        #about h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            background-color: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .contact-info p {
+            color: #b0b0b0;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000000;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                width: 95%;
+                top: 10px;
+                padding: 0.75rem 1rem;
+                border-radius: 30px;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .logo img {
+                height: 30px;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .banner-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .banner-text {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
+                max-width: 90%;
+            }
+
+            .banner-callout {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .banner-paragraph {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .product-card {
+                padding: 2rem 1.5rem;
+                min-height: auto;
+            }
+
+            .product-image {
+                height: 250px;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+            }
+
+            .tab-button {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .product-specs {
+                font-size: 0.9rem;
+            }
+
+            .product-specs th,
+            .product-specs td {
+                padding: 0.75rem;
+            }
         }
     </style>
 
@@ -55,16 +524,226 @@
 </head>
 
 <body>
-    <section>
-        <img src="BlusigmaLogo_Image.png" alt="Shadow Robotics Logo"
-            style="display: block; margin: 0 auto 20px; max-width: 200px; height: auto;">
-        <h1 style="font-size: 3.5rem">BluSigma Robotics</h1>
-        <p>We build robots for defense and industrial applications.</p>
-        <p>For queries, please contact us at: admin AT blusigma DOT in</p>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="BlusigmaLogo_Image.png" alt="BluSigma Robotics Logo">
+                <span class="logo-text">BluSigma Robotics</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#banner">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <p>&copy; 2025 BluSigma Robotics. All Rights Reserved.</p>
+    <!-- Banner Section -->
+    <section id="banner">
+        <!-- Placeholder GIF - Replace with your actual banner GIF -->
+        <!-- For now using CSS animated background as placeholder -->
+        <img src="bg.jpg" alt="Gulf of Mexico, Picture by NASA" class="banner-gif">
+        <div class="banner-text">
+            <h2 class="banner-callout">Enabling long-term human prosperity</h2>
+            <p class="banner-paragraph">Our goal is to build robots that combine machine strength, durability, and speed with human reliability and intelligence.</p>
+        </div>
     </section>
 
+    <!-- Products Section -->
+    <section id="products">
+        <h2>Our Products</h2>
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab-button active" data-tab="mx20">MX-20</button>
+                <button class="tab-button" data-tab="mx60">MX-60</button>
+            </div>
+
+            <!-- MX-20 Tab Content -->
+            <div id="mx20" class="tab-content active">
+                <div class="product-card">
+                    <img src="mx20.jpeg" alt="MX-20" class="product-image">
+                    <table class="product-specs">
+                        <tr>
+                            <th>Weight</th>
+                            <td>20 kg</td>
+                        </tr>
+                        <tr>
+                            <th>Payload Capacity</th>
+                            <td>5 kg</td>
+                        </tr>
+                        <tr>
+                            <th>Operating Range</th>
+                            <td>500 meters</td>
+                        </tr>
+                        <tr>
+                            <th>Battery Life</th>
+                            <td>2 hours</td>
+                        </tr>
+                        <tr>
+                            <th>Max Speed</th>
+                            <td>10 km/h</td>
+                        </tr>
+                        <tr>
+                            <th>Dimensions</th>
+                            <td>60 x 40 x 30 cm</td>
+                        </tr>
+                    </table>
+                    <a href="https://forms.gle/placeholder" target="_blank" class="product-button">Request Information</a>
+                </div>
+            </div>
+
+            <!-- MX-60 Tab Content -->
+            <div id="mx60" class="tab-content">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/800x400/1a1a1a/ffffff?text=MX-60+Product+Image" alt="MX-60" class="product-image">
+                    <table class="product-specs">
+                        <tr>
+                            <th>Weight</th>
+                            <td>60 kg</td>
+                        </tr>
+                        <tr>
+                            <th>Payload Capacity</th>
+                            <td>15 kg</td>
+                        </tr>
+                        <tr>
+                            <th>Operating Range</th>
+                            <td>1000 meters</td>
+                        </tr>
+                        <tr>
+                            <th>Battery Life</th>
+                            <td>4 hours</td>
+                        </tr>
+                        <tr>
+                            <th>Max Speed</th>
+                            <td>15 km/h</td>
+                        </tr>
+                        <tr>
+                            <th>Dimensions</th>
+                            <td>100 x 60 x 50 cm</td>
+                        </tr>
+                    </table>
+                    <a href="https://forms.gle/placeholder" target="_blank" class="product-button">Request Information</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Conceived by IIT Delhi graduates, <strong>BluSigma Robotics</strong> is an ambitious venture to bridge the gap between human intelligence and machine strength. Our goal is to build humanoids that are as reliable, safe, and intelligent as humans.                      
+                </p>
+            </div>
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>For queries and inquiries, please contact us at:</p>
+                <p><strong>admin AT blusigma DOT in</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 BluSigma Robotics. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Smooth scroll script -->
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active state to navigation on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.style.color = '#b0b0b0';
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.style.color = '#fff';
+                        }
+                    });
+                }
+            });
+        });
+
+        // Fade up animation on scroll for banner text
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe banner text elements
+        const bannerCallout = document.querySelector('.banner-callout');
+        const bannerParagraph = document.querySelector('.banner-paragraph');
+        
+        if (bannerCallout) {
+            observer.observe(bannerCallout);
+        }
+        if (bannerParagraph) {
+            observer.observe(bannerParagraph);
+        }
+
+        // Trigger animation immediately if banner is in view on load
+        window.addEventListener('load', () => {
+            const bannerSection = document.getElementById('banner');
+            if (bannerSection) {
+                const rect = bannerSection.getBoundingClientRect();
+                const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+                if (isInView) {
+                    if (bannerCallout) bannerCallout.classList.add('animate');
+                    if (bannerParagraph) bannerParagraph.classList.add('animate');
+                }
+            }
+        });
+
+        // Tab functionality for products section
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+    </script>
 </body>
 
 </html>
