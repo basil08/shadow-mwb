@@ -111,6 +111,35 @@
             color: #fff;
         }
 
+        /* Burger Menu */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .burger-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         /* Sections */
         section {
             min-height: 100vh;
@@ -455,9 +484,45 @@
                 height: 30px;
             }
 
+            .burger-menu {
+                display: flex;
+            }
+
             .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
+                position: fixed;
+                top: 80px;
+                left: 50%;
+                transform: translateX(-50%);
+                flex-direction: column;
+                background: rgba(40, 40, 40, 0.95);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                width: 90%;
+                padding: 2rem;
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+                gap: 1.5rem;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+                transform: translateX(-50%) translateY(-20px);
+            }
+
+            .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .nav-links li {
+                text-align: center;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+                display: block;
+                padding: 0.75rem;
             }
 
             .banner-content h1 {
@@ -531,7 +596,12 @@
                 <img src="BlusigmaLogo_Image.png" alt="BluSigma Robotics Logo">
                 <span class="logo-text">BluSigma Robotics</span>
             </div>
-            <ul class="nav-links">
+            <div class="burger-menu" id="burgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#banner">Home</a></li>
                 <li><a href="#products">Products</a></li>
                 <li><a href="#about">About Us</a></li>
@@ -743,6 +813,33 @@
                 document.getElementById(targetTab).classList.add('active');
             });
         });
+
+        // Burger menu functionality
+        const burgerMenu = document.getElementById('burgerMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        if (burgerMenu && navLinks) {
+            burgerMenu.addEventListener('click', () => {
+                burgerMenu.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    burgerMenu.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!burgerMenu.contains(e.target) && !navLinks.contains(e.target)) {
+                    burgerMenu.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
     </script>
 </body>
 
