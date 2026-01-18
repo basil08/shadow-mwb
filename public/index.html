@@ -420,10 +420,9 @@
         }
 
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 3rem;
-            align-items: center;
         }
 
         .about-text {
@@ -451,6 +450,148 @@
         .contact-info p {
             color: #b0b0b0;
             margin-bottom: 0.5rem;
+        }
+
+        /* Contact Form Styles */
+        .contact-container {
+            background-color: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .contact-container h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group.flex-grow {
+            flex: 1;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .form-group label {
+            color: #e0e0e0;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .required {
+            color: #ff6b6b;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background-color: rgba(40, 40, 40, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #fff;
+            background-color: rgba(40, 40, 40, 0.8);
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .submit-button:hover:not(:disabled) {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .button-loader {
+            display: none;
+        }
+
+        .form-message {
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .form-message.success {
+            display: block;
+            background-color: rgba(76, 175, 80, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.4);
+            color: #81c784;
+        }
+
+        .form-message.error {
+            display: block;
+            background-color: rgba(244, 67, 54, 0.2);
+            border: 1px solid rgba(244, 67, 54, 0.4);
+            color: #e57373;
+        }
+
+        .alternate-contact {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .alternate-contact p {
+            color: #b0b0b0;
+            margin-bottom: 0.5rem;
+        }
+
+        .alternate-contact p strong {
+            color: #fff;
         }
 
         /* Footer */
@@ -573,6 +714,15 @@
             .product-specs th,
             .product-specs td {
                 padding: 0.75rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .contact-container {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -700,17 +850,226 @@
 
     <!-- About Us Section -->
     <section id="about">
-        <h2>About Us</h2>
         <div class="about-content">
+            <div class="contact-container">
+                <h2>Get in touch</h2>
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="countryCode">Country Code</label>
+                            <select id="countryCode" name="countryCode">
+                                <option value="+93">+93 (Afghanistan)</option>
+                                <option value="+355">+355 (Albania)</option>
+                                <option value="+213">+213 (Algeria)</option>
+                                <option value="+376">+376 (Andorra)</option>
+                                <option value="+244">+244 (Angola)</option>
+                                <option value="+54">+54 (Argentina)</option>
+                                <option value="+374">+374 (Armenia)</option>
+                                <option value="+61">+61 (Australia)</option>
+                                <option value="+43">+43 (Austria)</option>
+                                <option value="+994">+994 (Azerbaijan)</option>
+                                <option value="+973">+973 (Bahrain)</option>
+                                <option value="+880">+880 (Bangladesh)</option>
+                                <option value="+375">+375 (Belarus)</option>
+                                <option value="+32">+32 (Belgium)</option>
+                                <option value="+501">+501 (Belize)</option>
+                                <option value="+229">+229 (Benin)</option>
+                                <option value="+975">+975 (Bhutan)</option>
+                                <option value="+591">+591 (Bolivia)</option>
+                                <option value="+387">+387 (Bosnia)</option>
+                                <option value="+267">+267 (Botswana)</option>
+                                <option value="+55">+55 (Brazil)</option>
+                                <option value="+673">+673 (Brunei)</option>
+                                <option value="+359">+359 (Bulgaria)</option>
+                                <option value="+226">+226 (Burkina Faso)</option>
+                                <option value="+257">+257 (Burundi)</option>
+                                <option value="+855">+855 (Cambodia)</option>
+                                <option value="+237">+237 (Cameroon)</option>
+                                <option value="+1">+1 (Canada)</option>
+                                <option value="+56">+56 (Chile)</option>
+                                <option value="+86">+86 (China)</option>
+                                <option value="+57">+57 (Colombia)</option>
+                                <option value="+506">+506 (Costa Rica)</option>
+                                <option value="+385">+385 (Croatia)</option>
+                                <option value="+53">+53 (Cuba)</option>
+                                <option value="+357">+357 (Cyprus)</option>
+                                <option value="+420">+420 (Czech Republic)</option>
+                                <option value="+45">+45 (Denmark)</option>
+                                <option value="+253">+253 (Djibouti)</option>
+                                <option value="+593">+593 (Ecuador)</option>
+                                <option value="+20">+20 (Egypt)</option>
+                                <option value="+503">+503 (El Salvador)</option>
+                                <option value="+372">+372 (Estonia)</option>
+                                <option value="+251">+251 (Ethiopia)</option>
+                                <option value="+679">+679 (Fiji)</option>
+                                <option value="+358">+358 (Finland)</option>
+                                <option value="+33">+33 (France)</option>
+                                <option value="+241">+241 (Gabon)</option>
+                                <option value="+220">+220 (Gambia)</option>
+                                <option value="+995">+995 (Georgia)</option>
+                                <option value="+49">+49 (Germany)</option>
+                                <option value="+233">+233 (Ghana)</option>
+                                <option value="+30">+30 (Greece)</option>
+                                <option value="+502">+502 (Guatemala)</option>
+                                <option value="+224">+224 (Guinea)</option>
+                                <option value="+509">+509 (Haiti)</option>
+                                <option value="+504">+504 (Honduras)</option>
+                                <option value="+852">+852 (Hong Kong)</option>
+                                <option value="+36">+36 (Hungary)</option>
+                                <option value="+354">+354 (Iceland)</option>
+                                <option value="+91" selected>+91 (India)</option>
+                                <option value="+62">+62 (Indonesia)</option>
+                                <option value="+98">+98 (Iran)</option>
+                                <option value="+964">+964 (Iraq)</option>
+                                <option value="+353">+353 (Ireland)</option>
+                                <option value="+972">+972 (Israel)</option>
+                                <option value="+39">+39 (Italy)</option>
+                                <option value="+81">+81 (Japan)</option>
+                                <option value="+962">+962 (Jordan)</option>
+                                <option value="+7">+7 (Kazakhstan)</option>
+                                <option value="+254">+254 (Kenya)</option>
+                                <option value="+965">+965 (Kuwait)</option>
+                                <option value="+996">+996 (Kyrgyzstan)</option>
+                                <option value="+856">+856 (Laos)</option>
+                                <option value="+371">+371 (Latvia)</option>
+                                <option value="+961">+961 (Lebanon)</option>
+                                <option value="+231">+231 (Liberia)</option>
+                                <option value="+218">+218 (Libya)</option>
+                                <option value="+423">+423 (Liechtenstein)</option>
+                                <option value="+370">+370 (Lithuania)</option>
+                                <option value="+352">+352 (Luxembourg)</option>
+                                <option value="+853">+853 (Macau)</option>
+                                <option value="+261">+261 (Madagascar)</option>
+                                <option value="+265">+265 (Malawi)</option>
+                                <option value="+60">+60 (Malaysia)</option>
+                                <option value="+960">+960 (Maldives)</option>
+                                <option value="+223">+223 (Mali)</option>
+                                <option value="+356">+356 (Malta)</option>
+                                <option value="+52">+52 (Mexico)</option>
+                                <option value="+373">+373 (Moldova)</option>
+                                <option value="+377">+377 (Monaco)</option>
+                                <option value="+976">+976 (Mongolia)</option>
+                                <option value="+382">+382 (Montenegro)</option>
+                                <option value="+212">+212 (Morocco)</option>
+                                <option value="+258">+258 (Mozambique)</option>
+                                <option value="+95">+95 (Myanmar)</option>
+                                <option value="+264">+264 (Namibia)</option>
+                                <option value="+977">+977 (Nepal)</option>
+                                <option value="+31">+31 (Netherlands)</option>
+                                <option value="+64">+64 (New Zealand)</option>
+                                <option value="+505">+505 (Nicaragua)</option>
+                                <option value="+227">+227 (Niger)</option>
+                                <option value="+234">+234 (Nigeria)</option>
+                                <option value="+47">+47 (Norway)</option>
+                                <option value="+968">+968 (Oman)</option>
+                                <option value="+92">+92 (Pakistan)</option>
+                                <option value="+507">+507 (Panama)</option>
+                                <option value="+595">+595 (Paraguay)</option>
+                                <option value="+51">+51 (Peru)</option>
+                                <option value="+63">+63 (Philippines)</option>
+                                <option value="+48">+48 (Poland)</option>
+                                <option value="+351">+351 (Portugal)</option>
+                                <option value="+974">+974 (Qatar)</option>
+                                <option value="+40">+40 (Romania)</option>
+                                <option value="+7">+7 (Russia)</option>
+                                <option value="+250">+250 (Rwanda)</option>
+                                <option value="+966">+966 (Saudi Arabia)</option>
+                                <option value="+221">+221 (Senegal)</option>
+                                <option value="+381">+381 (Serbia)</option>
+                                <option value="+65">+65 (Singapore)</option>
+                                <option value="+421">+421 (Slovakia)</option>
+                                <option value="+386">+386 (Slovenia)</option>
+                                <option value="+27">+27 (South Africa)</option>
+                                <option value="+82">+82 (South Korea)</option>
+                                <option value="+34">+34 (Spain)</option>
+                                <option value="+94">+94 (Sri Lanka)</option>
+                                <option value="+249">+249 (Sudan)</option>
+                                <option value="+46">+46 (Sweden)</option>
+                                <option value="+41">+41 (Switzerland)</option>
+                                <option value="+963">+963 (Syria)</option>
+                                <option value="+886">+886 (Taiwan)</option>
+                                <option value="+992">+992 (Tajikistan)</option>
+                                <option value="+255">+255 (Tanzania)</option>
+                                <option value="+66">+66 (Thailand)</option>
+                                <option value="+228">+228 (Togo)</option>
+                                <option value="+216">+216 (Tunisia)</option>
+                                <option value="+90">+90 (Turkey)</option>
+                                <option value="+993">+993 (Turkmenistan)</option>
+                                <option value="+256">+256 (Uganda)</option>
+                                <option value="+380">+380 (Ukraine)</option>
+                                <option value="+971">+971 (UAE)</option>
+                                <option value="+44">+44 (UK)</option>
+                                <option value="+1">+1 (USA)</option>
+                                <option value="+598">+598 (Uruguay)</option>
+                                <option value="+998">+998 (Uzbekistan)</option>
+                                <option value="+58">+58 (Venezuela)</option>
+                                <option value="+84">+84 (Vietnam)</option>
+                                <option value="+967">+967 (Yemen)</option>
+                                <option value="+260">+260 (Zambia)</option>
+                                <option value="+263">+263 (Zimbabwe)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group flex-grow">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="1234567890">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="extension">Ext.</label>
+                            <input type="text" id="extension" name="extension" placeholder="123">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="affiliation">Affiliation</label>
+                        <input type="text" id="affiliation" name="affiliation" placeholder="Company or Organization">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="occupation">Occupation</label>
+                        <input type="text" id="occupation" name="occupation" placeholder="Your role or profession">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="queryTitle">Query Title <span class="required">*</span></label>
+                        <input type="text" id="queryTitle" name="queryTitle" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="queryBody">Query Details <span class="required">*</span></label>
+                        <textarea id="queryBody" name="queryBody" rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">
+                        <span class="button-text">Submit</span>
+                        <span class="button-loader" style="display: none;">Sending...</span>
+                    </button>
+
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+
+                <div class="alternate-contact">
+                    <p>Or email us directly at:</p>
+                    <p><strong>admin AT blusigma DOT in</strong></p>
+                </div>
+            </div>
+        <h2>About Us</h2>
+
             <div class="about-text">
                 <p>
-                    Conceived by IIT Delhi graduates, <strong>BluSigma Robotics</strong> is an ambitious venture to bridge the gap between human intelligence and machine strength. Our goal is to build humanoids that are as reliable, safe, and intelligent as humans.                      
+                    Conceived by IIT Delhi graduates, <strong>BluSigma Robotics</strong> is an ambitious venture to bridge the gap between human intelligence and machine strength. Our goal is to build humanoids that are as reliable, safe, and intelligent as humans.
                 </p>
-            </div>
-            <div class="contact-info">
-                <h3>Contact Us</h3>
-                <p>For queries and inquiries, please contact us at:</p>
-                <p><strong>admin AT blusigma DOT in</strong></p>
             </div>
         </div>
     </section>
@@ -838,6 +1197,83 @@
                     navLinks.classList.remove('active');
                 }
             });
+        }
+
+        // Contact Form Handling
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+        const submitButton = contactForm.querySelector('.submit-button');
+        const buttonText = submitButton.querySelector('.button-text');
+        const buttonLoader = submitButton.querySelector('.button-loader');
+
+        // IMPORTANT: Replace this URL with your Google Apps Script web app URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby1NtdwmsQ08xIM9l_gNi0xZh6U4SZ6WVjjyYGWWsfAQMPJb4dChf4QOLlGkkepv5w/exec';
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Check if script URL is configured
+            if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+                showMessage('Please configure the Google Apps Script URL in the code.', 'error');
+                return;
+            }
+
+            // Disable submit button and show loader
+            submitButton.disabled = true;
+            buttonText.style.display = 'none';
+            buttonLoader.style.display = 'inline';
+            formMessage.className = 'form-message';
+
+            // Collect form data
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                countryCode: document.getElementById('countryCode').value,
+                phone: document.getElementById('phone').value.trim(),
+                extension: document.getElementById('extension').value.trim(),
+                affiliation: document.getElementById('affiliation').value.trim(),
+                occupation: document.getElementById('occupation').value.trim(),
+                queryTitle: document.getElementById('queryTitle').value.trim(),
+                queryBody: document.getElementById('queryBody').value.trim(),
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Note: With no-cors mode, we can't read the response
+                // We'll assume success if no error was thrown
+                showMessage('Thank you! Your message has been submitted successfully. We will get back to you soon.', 'success');
+                contactForm.reset();
+
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                showMessage('Sorry, there was an error submitting your message. Please try again or email us directly.', 'error');
+            } finally {
+                // Re-enable submit button
+                submitButton.disabled = false;
+                buttonText.style.display = 'inline';
+                buttonLoader.style.display = 'none';
+            }
+        });
+
+        function showMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = `form-message ${type}`;
+
+            // Auto-hide success messages after 10 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    formMessage.className = 'form-message';
+                }, 10000);
+            }
         }
     </script>
 </body>
