@@ -26,7 +26,7 @@
 
     <!-- Anton SC font from Google Fonts for heading -->
     <link href="https://fonts.googleapis.com/css2?family=Anton+SC&display=swap" rel="stylesheet">
-    
+
     <!-- Custom styles for SPA -->
     <style>
         * {
@@ -43,7 +43,8 @@
             overflow-x: hidden;
         }
 
-        h1, h2 {
+        h1,
+        h2 {
             font-family: 'Anton SC', Arial, Helvetica, sans-serif;
             letter-spacing: 1px;
         }
@@ -179,7 +180,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
+            background:
                 radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
                 linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
@@ -247,9 +248,11 @@
             0% {
                 background-position: 0% 50%;
             }
+
             50% {
                 background-position: 100% 50%;
             }
+
             100% {
                 background-position: 0% 50%;
             }
@@ -754,7 +757,8 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#banner">Home</a></li>
                 <li><a href="#products">Products</a></li>
-                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
             </ul>
         </nav>
     </header>
@@ -766,7 +770,8 @@
         <img src="bg.jpg" alt="Gulf of Mexico, Picture by NASA" class="banner-gif">
         <div class="banner-text">
             <h2 class="banner-callout">Enabling long-term human prosperity</h2>
-            <p class="banner-paragraph">Our goal is to build robots that combine machine strength, durability, and speed with human reliability and intelligence.</p>
+            <p class="banner-paragraph">Our goal is to build robots that combine machine strength, durability, and speed
+                with human reliability and intelligence.</p>
         </div>
     </section>
 
@@ -809,7 +814,8 @@
                             <td>8:1</td>
                         </tr>
                     </table>
-                    <a href="https://forms.gle/fdd7jXqEL8R9KqMe7" target="_blank" class="product-button">Request Information</a>
+                    <a href="https://forms.gle/fdd7jXqEL8R9KqMe7" target="_blank" class="product-button">Request
+                        Information</a>
                 </div>
             </div>
             <!-- MX-60 Tab Content -->
@@ -842,14 +848,15 @@
                             <td>10:1</td>
                         </tr>
                     </table>
-                    <a href="https://forms.gle/fdd7jXqEL8R9KqMe7" target="_blank" class="product-button">Request Information</a>
+                    <a href="https://forms.gle/fdd7jXqEL8R9KqMe7" target="_blank" class="product-button">Request
+                        Information</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Us Section -->
-    <section id="about">
+    <section id="contact">
         <div class="about-content">
             <div class="contact-container">
                 <h2>Get in touch</h2>
@@ -1064,19 +1071,26 @@
                     <p><strong>admin AT blusigma DOT in</strong></p>
                 </div>
             </div>
+    </section>
+
+    <section id="about">
         <h2>About Us</h2>
 
-            <div class="about-text">
-                <p>
-                    Conceived by IIT Delhi graduates, <strong>BluSigma Robotics</strong> is an ambitious venture to bridge the gap between human intelligence and machine strength. Our goal is to build humanoids that are as reliable, safe, and intelligent as humans.
-                </p>
-            </div>
+        <div class="about-text">
+            <p>
+                Conceived by IIT Delhi graduates, <strong>BluSigma Robotics</strong> is an ambitious venture to bridge
+                the gap between human intelligence and machine strength. Our goal is to build humanoids that are as
+                reliable, safe, and intelligent as humans.
+            </p>
+        </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 BluSigma Robotics. All Rights Reserved.</p>
+        <p>&copy; 2025 BluSigma Robotics (P) Ltd. All Rights Reserved.</p>
+        <p>Registered Office: 400-A, 4th Floor, 12th Ajit Singh House, Yusuf Sarai Commercial Complex, New Delhi 110016,
+            Near Green Park Metro Station Exit-2</p>
     </footer>
 
     <!-- Smooth scroll script -->
@@ -1133,7 +1147,7 @@
         // Observe banner text elements
         const bannerCallout = document.querySelector('.banner-callout');
         const bannerParagraph = document.querySelector('.banner-paragraph');
-        
+
         if (bannerCallout) {
             observer.observe(bannerCallout);
         }
